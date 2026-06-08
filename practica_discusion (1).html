@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Práctica · Redacción de la Discusión</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a2e;min-height:100vh;display:flex;flex-direction:column;font-size:14px}
+a{color:inherit;text-decoration:none}
+
+/* HEADER */
+header{display:flex;align-items:center;gap:1rem;padding:.75rem 1.5rem;border-bottom:1px solid #e5e7eb;background:#fff;flex-shrink:0;flex-wrap:wrap}
+.logo{font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;color:#1a1a2e;display:flex;align-items:center;gap:8px}
+.logo-accent{width:8px;height:8px;border-radius:50%;background:#6d28d9;flex-shrink:0}
+.pills{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.pill{font-size:.7rem;font-weight:500;padding:3px 9px;border-radius:999px;border:1px solid #d1d5db;color:#6b7280}
+
+/* LAYOUT */
+.app{display:flex;flex:1;overflow:hidden;min-height:calc(100vh - 50px)}
+
+/* SIDEBAR */
+nav{width:195px;min-width:195px;border-right:1px solid #e5e7eb;background:#fafafa;padding:.75rem 0;overflow-y:auto;flex-shrink:0}
+.nav-section{font-size:.65rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:#9ca3af;padding:.5rem 1rem .25rem}
+.nav-btn{display:flex;align-items:center;gap:8px;width:100%;padding:7px 1rem;background:none;border:none;border-left:2px solid transparent;cursor:pointer;font-family:'Inter',sans-serif;font-size:.82rem;color:#6b7280;text-align:left;transition:background .12s,color .12s}
+.nav-btn:hover{background:#f3f4f6;color:#1a1a2e}
+.nav-btn.active{background:#ede9fe;color:#5b21b6;border-left-color:#6d28d9;font-weight:500}
+.nav-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* MAIN */
+main{flex:1;overflow-y:auto;padding:1.75rem 2rem;background:#fff}
+
+/* TYPOGRAPHY */
+.page-title{font-family:'Libre Baskerville',serif;font-size:1.4rem;font-weight:700;color:#1a1a2e;margin-bottom:.3rem}
+.page-sub{font-size:.82rem;color:#6b7280;margin-bottom:1.5rem}
+
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
+.metric-card{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.85rem 1rem;text-align:center}
+.metric-val{font-family:'Libre Baskerville',serif;font-size:1.8rem;font-weight:700;color:#1a1a2e;line-height:1}
+.metric-lbl{font-size:.7rem;color:#9ca3af;margin-top:3px}
+
+/* GROUPS OVERVIEW GRID */
+.groups-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.group-card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:.9rem 1.1rem;cursor:pointer;transition:border-color .15s,box-shadow .15s;text-align:left}
+.group-card:hover{border-color:#a78bfa;box-shadow:0 2px 8px rgba(109,40,217,.08)}
+.group-card-top{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.group-card-area{font-size:.7rem;font-weight:500;color:#9ca3af}
+.group-card-title{font-size:.88rem;font-weight:500;color:#1a1a2e;line-height:1.4}
+.group-card-design{font-size:.72rem;color:#9ca3af;margin-top:3px}
+
+/* CASE HEADER */
+.case-area-tag{display:inline-block;font-size:.7rem;font-weight:500;padding:3px 10px;border-radius:999px;border:1px solid;margin-bottom:9px}
+.case-title{font-family:'Libre Baskerville',serif;font-size:1.2rem;font-weight:700;color:#1a1a2e;margin-bottom:4px;line-height:1.35}
+.case-design{font-size:.82rem;color:#6b7280;margin-bottom:1.25rem}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid #e5e7eb;margin-bottom:1.25rem}
+.tab-btn{padding:7px 16px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;font-family:'Inter',sans-serif;font-size:.82rem;color:#6b7280;transition:color .12s}
+.tab-btn.active{color:#5b21b6;font-weight:500;border-bottom-color:#6d28d9}
+
+/* CARDS */
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.1rem 1.25rem;margin-bottom:.9rem}
+.card-title{font-size:.7rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:#9ca3af;margin-bottom:.85rem;display:flex;align-items:center;gap:6px}
+.objective-text{font-size:.88rem;color:#374151;line-height:1.65}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:.82rem;table-layout:fixed}
+th{text-align:left;font-size:.7rem;font-weight:500;color:#9ca3af;letter-spacing:.04em;padding:5px 8px 9px;border-bottom:1px solid #e5e7eb}
+td{padding:8px;border-bottom:1px solid #f3f4f6;color:#374151;vertical-align:top;word-wrap:break-word}
+tr:last-child td{border-bottom:none}
+.td-bold{font-weight:500;color:#1a1a2e}
+.td-sig{color:#059669;font-size:.78rem;font-weight:500}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+
+/* LIST */
+.list-item{display:flex;gap:9px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #f3f4f6;font-size:.82rem;color:#374151;line-height:1.5}
+.list-item:last-child{border-bottom:none}
+.list-num{font-family:'Libre Baskerville',serif;font-weight:700;font-size:.82rem;flex-shrink:0;margin-top:1px}
+.list-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px}
+
+/* MOVES */
+.moves-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.move-card{border:1px solid #e5e7eb;border-left-width:3px;border-radius:0 8px 8px 0;padding:10px 12px;background:#fafafa}
+.move-badge{display:inline-flex;width:19px;height:19px;border-radius:50%;align-items:center;justify-content:center;font-size:.7rem;font-weight:500;color:#fff;margin-bottom:5px}
+.move-title{font-size:.83rem;font-weight:500;color:#1a1a2e;margin-bottom:3px}
+.move-hint{font-size:.74rem;color:#6b7280;line-height:1.5}
+
+/* LANG NOTE */
+.lang-note{display:flex;gap:9px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #f3f4f6;font-size:.8rem;color:#374151;line-height:1.5}
+.lang-note:last-child{border-bottom:none}
+
+/* PHASES */
+.phase-item{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px solid #f3f4f6}
+.phase-item:last-child{border-bottom:none}
+.phase-min{font-family:'Libre Baskerville',serif;font-weight:700;font-size:.8rem;color:#6d28d9;min-width:40px;padding-top:1px}
+.phase-name{font-size:.88rem;font-weight:500;color:#1a1a2e;margin-bottom:2px}
+.phase-desc{font-size:.78rem;color:#6b7280}
+
+/* GUIDE ITEM */
+.guide-item{display:flex;gap:9px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #f3f4f6;font-size:.8rem;color:#374151;line-height:1.5}
+.guide-item:last-child{border-bottom:none}
+
+/* RUBRIC */
+.rubric-item{display:flex;gap:9px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:.82rem}
+.rubric-item:last-child{border-bottom:none}
+.rubric-check{width:15px;height:15px;border:1px solid #d1d5db;border-radius:3px;flex-shrink:0;margin-top:1px}
+.rubric-text{color:#374151;flex:1;line-height:1.5}
+.rubric-pts{margin-left:auto;font-size:.75rem;font-weight:500;color:#6b7280;flex-shrink:0;min-width:28px;text-align:right}
+.rubric-total{display:flex;justify-content:flex-end;padding-top:9px;border-top:1px solid #e5e7eb;font-size:.88rem;font-weight:500;color:#1a1a2e}
+
+/* LEVEL ITEM */
+.level-item{display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:.82rem}
+.level-item:last-child{border-bottom:none}
+.level-range{font-weight:500;color:#6b7280;min-width:42px;flex-shrink:0}
+.level-name{font-weight:500;color:#1a1a2e;min-width:90px;flex-shrink:0}
+.level-desc{color:#6b7280}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:2px}
+
+@media(max-width:720px){
+  nav{width:150px;min-width:150px}
+  .two-col,.moves-grid,.groups-grid{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  main{padding:1.25rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="logo-accent"></span>
+    Práctica · Redacción de la Discusión
+  </div>
+  <div class="pills">
+    <span class="pill">60 alumnos</span>
+    <span class="pill">10 grupos · 6 integrantes</span>
+    <span class="pill">UPAO 2025</span>
+  </div>
+</header>
+
+<div class="app">
+  <nav id="sidebar">
+    <div class="nav-section">Grupos</div>
+    <div id="group-nav"></div>
+    <div class="nav-section" style="margin-top:10px">Docente</div>
+    <button class="nav-btn" id="nav-overview" onclick="showOverview()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Resumen
+    </button>
+    <button class="nav-btn" id="nav-phases" onclick="showPhases()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1.5" fill="currentColor"/><circle cx="3" cy="12" r="1.5" fill="currentColor"/><circle cx="3" cy="18" r="1.5" fill="currentColor"/></svg>
+      Fases
+    </button>
+    <button class="nav-btn" id="nav-rubric" onclick="showRubric()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      Rúbrica
+    </button>
+  </nav>
+  <main id="main-content"></main>
+</div>
+
+<script>
+var COLORS=["#6d28d9","#0d9488","#2563eb","#d97706","#dc2626","#059669","#7c3aed","#0891b2","#ea580c","#4f46e5"];
+
+var GROUPS=[
+  {id:1,tema:"Hipertensión arterial y riesgo cardiovascular",area:"Cardiología",disenio:"Estudio transversal en 312 pacientes adultos de un hospital de tercer nivel",objetivo:"Determinar la asociación entre el control inadecuado de la presión arterial y la presencia de daño de órgano blanco en pacientes hipertensos",resultados:[{v:"Hipertensión no controlada",p:"57.1% (178/312)",e:""},{v:"Hipertrofia ventricular izquierda",p:"50.0% vs 22.6%",e:"OR = 3.48"},{v:"Microalbuminuria",p:"37.6% vs 11.9%",e:"OR = 4.21"},{v:"Retinopatía hipertensiva",p:"30.3% vs 9.4%",e:"OR = 4.13"},{v:"Asociación HTA no controlada – DOB",p:"p < 0.001",e:"IC95%: 2.8–5.2"}],lit:["López et al. (2021) – prevalencia DOB 44% en HTA no controlada","OMS 2023 – solo 21% de hipertensos con control adecuado en LATAM","Sánchez et al. (2022) – HVI como principal DOB en población peruana"],lim:["Diseño transversal: no permite establecer temporalidad","Centro único de tercer nivel: posible sesgo de selección","Medición única de PA: no refleja variabilidad circadiana"]},
+  {id:2,tema:"Diabetes tipo 2 y adherencia terapéutica",area:"Endocrinología",disenio:"Cohorte prospectiva en 286 pacientes con DM2, seguimiento 12 meses",objetivo:"Evaluar el efecto de la baja adherencia terapéutica sobre el control glucémico a 12 meses",resultados:[{v:"Baja adherencia (Morisky ≤4)",p:"56.6% (162/286)",e:""},{v:"HbA1c >7% al mes 12",p:"71.6% vs 38.7%",e:"RR = 1.85"},{v:"Hospitalizaciones por descompensación",p:"18.5% vs 6.3%",e:"RR = 2.94"},{v:"Incremento medio HbA1c",p:"+1.4% vs +0.2%",e:"p < 0.001"},{v:"Neuropatía periférica nueva",p:"22.2% vs 9.6%",e:"HR = 2.31"}],lit:["García et al. (2022) – adherencia <50% en DM2 en ALC","Khunti et al. (2021) – cada 10% de reducción en adherencia aumenta HbA1c en 0.6%","Vargas et al. (2023) – factores asociados a baja adherencia en Perú"],lim:["Adherencia medida por autoinforme (sesgo de deseabilidad social)","Pérdida de seguimiento del 14%","No se controló cambios en estilo de vida durante el seguimiento"]},
+  {id:3,tema:"Sepsis neonatal y mortalidad hospitalaria",area:"Neonatología",disenio:"Cohorte retrospectiva en 198 neonatos con sepsis, UCIN 2019–2023",objetivo:"Identificar los factores de riesgo asociados a mortalidad en neonatos con sepsis en UCIN",resultados:[{v:"Mortalidad global",p:"26.3% (52/198)",e:""},{v:"Sepsis tardía (>72h)",p:"31.4% vs 18.7%",e:"OR = 1.99"},{v:"Gram negativos (E. coli, Klebsiella)",p:"Mortalidad 38.2%",e:"OR = 2.87"},{v:"SAPS II >35",p:"Mortalidad 48.6%",e:"OR = 4.12"},{v:"Ventilación mecánica",p:"Mortalidad 41.3%",e:"OR = 3.54"}],lit:["OPS 2023 – mortalidad por sepsis neonatal en LATAM: 22–35%","Fleischmann et al. (2022) – gram negativos predicen peor pronóstico","Coronado et al. (2023) – SAPS II como predictor en UCIN peruanas"],lim:["Diseño retrospectivo: datos incompletos en 18% de historias","Microorganismos no identificados en el 23% de casos","Centro único: flora microbiana local puede diferir"]},
+  {id:4,tema:"Anemia en gestantes y bajo peso al nacer",area:"Ginecología–Obstetricia",disenio:"Estudio casos y controles en 350 gestantes (175 casos / 175 controles)",objetivo:"Determinar si la anemia materna en el segundo trimestre es factor de riesgo para bajo peso al nacer",resultados:[{v:"Anemia en casos (BPN)",p:"56.0% (98/175)",e:""},{v:"Anemia en controles",p:"29.7% (52/175)",e:""},{v:"Asociación anemia – BPN",p:"p < 0.001",e:"OR = 3.02 IC95%: 1.92–4.76"},{v:"Anemia severa (Hb <8 g/dL)",p:"OR = 5.41",e:"IC95%: 2.13–13.74"},{v:"Control prenatal <6 visitas",p:"OR = 2.18",e:"IC95%: 1.34–3.55"}],lit:["OMS 2023 – anemia afecta al 40% de gestantes en LATAM","Cutini et al. (2022) – OR = 2.8 para BPN en gestantes anémicas","Cisneros et al. (2021) – alto riesgo en zonas andinas peruanas"],lim:["Diseño retrospectivo: posible sesgo de información","Anemia evaluada solo en segundo trimestre","No se midieron otros micronutrientes (zinc, ácido fólico)"]},
+  {id:5,tema:"EPOC y calidad de vida",area:"Neumología",disenio:"Estudio transversal en 224 pacientes con EPOC estadios II–IV (GOLD), nivel ambulatorio",objetivo:"Evaluar el impacto del estadio de EPOC sobre la calidad de vida medida con el cuestionario St. George",resultados:[{v:"SGRQ total – estadio II",p:"Media 38.4 (DS 11.2)",e:""},{v:"SGRQ total – estadio IV",p:"Media 71.8 (DS 14.6)",e:""},{v:"Diferencia estadio II vs IV",p:"33.4 puntos",e:"p < 0.001"},{v:"Correlación FEV1 – SGRQ",p:"r = -0.68",e:"p < 0.001"},{v:"Ansiedad/depresión (HAD ≥8)",p:"39.3% (88/224)",e:"OR = 2.41 vs GOLD II"}],lit:["Jones et al. (2021) – SGRQ ≥25 puntos = impacto clínicamente relevante","Iyer et al. (2022) – progresión GOLD se asocia con deterioro lineal en QoL","Fuentes et al. (2023) – prevalencia EPOC subestimada en adultos peruanos"],lim:["Diseño transversal: no permite evaluar cambio en el tiempo","Selección en centros ambulatorios: puede excluir casos severos","Diagnóstico espirométrico no disponible en el 12%"]},
+  {id:6,tema:"Lactancia materna exclusiva y morbilidad infantil",area:"Pediatría",disenio:"Cohorte prospectiva en 418 pares madre-hijo, seguimiento hasta los 6 meses",objetivo:"Comparar la tasa de hospitalización por infecciones en lactantes con y sin lactancia materna exclusiva",resultados:[{v:"LME hasta 6 meses",p:"48.1% (201/418)",e:""},{v:"Hospitalización por IRA",p:"8.2% vs 22.7%",e:"RR = 0.36"},{v:"Hospitalización por EDA",p:"5.5% vs 17.4%",e:"RR = 0.32"},{v:"Días de hospitalización",p:"1.2 vs 3.8 días",e:"p < 0.001"},{v:"Cualquier hospitalización",p:"11.4% vs 30.4%",e:"RR = 0.38 IC95%: 0.24–0.58"}],lit:["OMS 2023 – LME protege frente a IRA y EDA en menores de 6 meses","Victora et al. (2022) – reducción del 73% de hospitalizaciones con LME","Quispe et al. (2022) – barreras para LME en contexto urbano peruano"],lim:["Adherencia a LME reportada por la madre (sesgo de deseabilidad)","Diferencias socioeconómicas no completamente controladas","Seguimiento limitado a 6 meses"]},
+  {id:7,tema:"Depresión postparto y lactancia materna",area:"Psiquiatría perinatal",disenio:"Estudio transversal en 302 puérperas a las 6–8 semanas postparto",objetivo:"Determinar la asociación entre depresión postparto y abandono de la lactancia antes de los 3 meses",resultados:[{v:"Prevalencia de depresión postparto",p:"24.5% (74/302)",e:""},{v:"Abandono LM <3 meses con DPP",p:"64.9% (48/74)",e:""},{v:"Abandono LM <3 meses sin DPP",p:"22.8% (52/228)",e:"OR = 6.21"},{v:"Apoyo de pareja (factor protector)",p:"OR = 0.31",e:"IC95%: 0.17–0.57"},{v:"Parto por cesárea",p:"OR = 2.04",e:"IC95%: 1.18–3.53"}],lit:["Dennis & McQueen (2021) – DPP triplica el riesgo de abandono precoz","Shafiei et al. (2022) – meta-análisis: OR = 2.8 para abandono con DPP","Caro et al. (2023) – prevalencia DPP en Lima: 18–26%"],lim:["Diseño transversal: no permite establecer causalidad","EPDS como tamizaje: no sustituye diagnóstico psiquiátrico","Sesgo de selección: puérperas que no asistieron a control no incluidas"]},
+  {id:8,tema:"Obesidad infantil y sedentarismo",area:"Medicina del deporte / Pediatría",disenio:"Estudio transversal en 489 escolares de 8–12 años, colegios urbanos de Trujillo",objetivo:"Evaluar la asociación entre tiempo de pantalla >2 h/día y obesidad en escolares de primaria",resultados:[{v:"Obesidad (IMC >2 DE OMS)",p:"20.0% (98/489)",e:""},{v:"Tiempo de pantalla >2 h/día",p:"65.0% (318/489)",e:""},{v:"Obesidad con >2 h de pantalla",p:"27.4% vs 6.5%",e:"OR = 5.46"},{v:"Actividad física <60 min/día",p:"OR = 2.98",e:"IC95%: 1.74–5.11"},{v:"Consumo diario de bebidas azucaradas",p:"OR = 3.21",e:"IC95%: 1.89–5.45"}],lit:["Tremblay et al. (2021) – sedentarismo ≥2 h/día duplica riesgo de obesidad","WHO 2022 – 81% de adolescentes no cumple recomendaciones de AF","Pajuelo et al. (2023) – obesidad infantil en escolares peruanos: 18.3%"],lim:["Tiempo de pantalla medido por autoinforme parental","Diseño transversal: no permite establecer dirección de la asociación","No se midió composición corporal (solo IMC)"]},
+  {id:9,tema:"Adherencia a guías en dolor lumbar crónico",area:"Medicina familiar / Reumatología",disenio:"Auditoría clínica prospectiva en 267 pacientes con lumbalgia crónica en atención primaria",objetivo:"Evaluar el grado de adherencia al manejo no farmacológico de la lumbalgia crónica según guías NICE 2023",resultados:[{v:"Adherencia global a guías NICE",p:"42.3% adecuada",e:""},{v:"Prescripción de ejercicio terapéutico",p:"36.7% (98/267)",e:""},{v:"Derivación a fisioterapia",p:"27.0% (72/267)",e:""},{v:"Prescripción de AINE >30 días",p:"58.4% (156/267)",e:"No recomendado"},{v:"Abordaje psicológico (TCC)",p:"6.7% (18/267)",e:"Muy bajo"}],lit:["NICE 2023 – ejercicio + TCC como primera línea en lumbalgia crónica","Foster et al. (2022) – infrautilización de TCC en lumbalgia en LATAM","Maher et al. (2023) – AINE a largo plazo: riesgo supera beneficio"],lim:["Auditoría en único establecimiento de APS","No se evaluó nivel de conocimiento de los médicos sobre las guías","Posible sesgo de Hawthorne al ser un estudio de auditoría"]},
+  {id:10,tema:"COVID-19 y secuelas respiratorias",area:"Neumología / Medicina interna",disenio:"Cohorte retrospectiva en 344 pacientes hospitalizados por COVID-19 grave, seguimiento 12 meses",objetivo:"Describir la prevalencia y factores asociados a secuelas respiratorias a los 12 meses post-COVID-19 grave",resultados:[{v:"Secuelas respiratorias a 12 meses",p:"54.1% (186/344)",e:""},{v:"Disnea de esfuerzo persistente",p:"41.3% (142/344)",e:""},{v:"DLCO <80% del predicho",p:"52.7% entre afectados",e:""},{v:"Ventilación mecánica invasiva (VMI)",p:"OR = 4.32",e:"IC95%: 2.54–7.35"},{v:"Diabetes como comorbilidad",p:"OR = 2.87",e:"IC95%: 1.63–5.04"}],lit:["Huang et al. (2021) – 76% de supervivientes presentan al menos 1 síntoma a 6 meses","Torres et al. (2022) – VMI como predictor más fuerte de secuelas pulmonares","Solis et al. (2023) – alta carga de post-COVID en hospitales peruanos"],lim:["Diseño retrospectivo: espirometría no disponible en todos","Pérdida de seguimiento del 17% a los 12 meses","Variantes de SARS-CoV-2 no diferenciadas (pre- y post-Ómicron)"]}
+];
+
+var MOVES=[
+  {n:1,t:"Responder el objetivo",h:'¿Se alcanzó? Enuncia el hallazgo principal sin cifras nuevas. Ej.: "Este estudio demostró una asociación significativa entre…"',c:"#6d28d9"},
+  {n:2,t:"Comparar con la literatura",h:'Usa los 3 artículos sugeridos. ¿Coinciden o difieren? Ej.: "Estos hallazgos son consistentes con [Autor, año], quienes…"',c:"#0d9488"},
+  {n:3,t:"Explicar las diferencias",h:"Si algún resultado difiere, razona el porqué: diseño, muestra, contexto, período. No te disculpes, argumenta.",c:"#6b7280"},
+  {n:4,t:"Fortalezas del estudio",h:'1–2 oraciones. Diseño, muestra representativa, instrumento validado. Ej.: "Una fortaleza fue el uso de criterios diagnósticos estandarizados…"',c:"#059669"},
+  {n:5,t:"Limitaciones",h:"Usa las 3 del caso. Fórmula: [tipo] + [efecto potencial en los resultados] + \"futuros estudios deberían…\"",c:"#d97706"},
+  {n:6,t:"Implicancias y futuro",h:"¿Qué cambia en la práctica clínica? ¿Qué estudios se necesitan? Cierra con una sola oración de proyección.",c:"#dc2626"}
+];
+
+var currentView='overview', currentGroup=null;
+
+function buildNav(){
+  var html='';
+  for(var i=0;i<GROUPS.length;i++){
+    var g=GROUPS[i];
+    var active=(currentView==='group'&&currentGroup===g.id)?'active':'';
+    html+='<button class="nav-btn '+active+'" onclick="showGroup('+g.id+')">'
+      +'<span class="nav-dot" style="background:'+COLORS[g.id-1]+'"></span>'
+      +'Grupo '+g.id+'</button>';
+  }
+  document.getElementById('group-nav').innerHTML=html;
+  var views=['overview','phases','rubric'];
+  for(var j=0;j<views.length;j++){
+    var el=document.getElementById('nav-'+views[j]);
+    if(el) el.className='nav-btn'+(currentView===views[j]?' active':'');
+  }
+}
+
+function esc(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function showGroup(id){
+  currentGroup=id; currentView='group';
+  buildNav();
+  var g=GROUPS[id-1];
+  var c=COLORS[id-1];
+  var isObs=/transversal|retrospectiva|casos y controles/i.test(g.disenio);
+
+  var rows='';
+  for(var i=0;i<g.resultados.length;i++){
+    var r=g.resultados[i];
+    var eSig=r.e&&(r.e.indexOf('OR')>=0||r.e.indexOf('RR')>=0||r.e.indexOf('HR')>=0||r.e.indexOf('p <')>=0||r.e.indexOf('IC')>=0);
+    rows+='<tr><td>'+esc(r.v)+'</td>'
+      +'<td class="td-bold">'+esc(r.p)+'</td>'
+      +'<td>'+(r.e?'<span class="'+(eSig?'td-sig':'td-bold')+'">'+esc(r.e)+'</span>':'—')+'</td></tr>';
+  }
+
+  var litHtml='';
+  for(var i=0;i<g.lit.length;i++){
+    litHtml+='<div class="list-item"><span class="list-num" style="color:'+c+'">'+(i+1)+'.</span><span>'+esc(g.lit[i])+'</span></div>';
+  }
+  var limHtml='';
+  for(var i=0;i<g.lim.length;i++){
+    limHtml+='<div class="list-item"><span class="list-dot" style="background:'+c+'"></span><span>'+esc(g.lim[i])+'</span></div>';
+  }
+
+  var movesHtml='';
+  for(var i=0;i<MOVES.length;i++){
+    var m=MOVES[i];
+    movesHtml+='<div class="move-card" style="border-left-color:'+m.c+'">'
+      +'<span class="move-badge" style="background:'+m.c+'">'+m.n+'</span>'
+      +'<div class="move-title">'+esc(m.t)+'</div>'
+      +'<div class="move-hint">'+esc(m.h)+'</div></div>';
+  }
+
+  var langNote=isObs
+    ?'Diseño observacional → usa "se observó una asociación" o "se asoció con". Evita afirmar causalidad directa.'
+    :'Diseño de cohorte → "se asoció con" y "predijo" son apropiados. La causalidad sigue requiriendo un ECA bien controlado.';
+  var langItems=[langNote,'Primer párrafo: 3–5 oraciones, sin cifras nuevas que no aparezcan ya en Resultados.','Cita así: "Estos resultados son consistentes con [Autor, año], quienes reportaron…"','Limitaciones: [nombre] + [efecto potencial] + "futuros estudios deberían…"'];
+  var langHtml='';
+  for(var i=0;i<langItems.length;i++){
+    langHtml+='<div class="lang-note"><span class="list-dot" style="background:'+c+';margin-top:6px"></span><span>'+esc(langItems[i])+'</span></div>';
+  }
+
+  document.getElementById('main-content').innerHTML=
+    '<span class="case-area-tag" style="color:'+c+';border-color:'+c+';background:'+c+'18">Grupo '+g.id+' · '+esc(g.area)+'</span>'
+    +'<div class="case-title">'+esc(g.tema)+'</div>'
+    +'<div class="case-design">'+esc(g.disenio)+'</div>'
+    +'<div class="tabs" id="tabs">'
+    +'<button class="tab-btn active" onclick="switchTab(\'caso\')">Caso clínico</button>'
+    +'<button class="tab-btn" onclick="switchTab(\'guia\')">Guía de redacción</button>'
+    +'</div>'
+    +'<div id="pane-caso">'
+    +'<div class="card"><div class="card-title">Objetivo del estudio</div><p class="objective-text">'+esc(g.objetivo)+'</p></div>'
+    +'<div class="card"><div class="card-title">Resultados principales</div>'
+    +'<table><thead><tr><th style="width:42%">Variable</th><th style="width:30%">Frecuencia / %</th><th style="width:28%">Estadístico</th></tr></thead>'
+    +'<tbody>'+rows+'</tbody></table></div>'
+    +'<div class="two-col">'
+    +'<div class="card"><div class="card-title">Literatura sugerida</div>'+litHtml+'</div>'
+    +'<div class="card"><div class="card-title">Limitaciones a declarar</div>'+limHtml+'</div>'
+    +'</div></div>'
+    +'<div id="pane-guia" style="display:none">'
+    +'<div class="card"><div class="card-title">Los 6 movimientos — qué escribir</div>'
+    +'<div class="moves-grid">'+movesHtml+'</div></div>'
+    +'<div class="card"><div class="card-title">Nota de lenguaje para este caso</div>'+langHtml+'</div>'
+    +'</div>';
+}
+
+function switchTab(name){
+  var btns=document.querySelectorAll('#tabs .tab-btn');
+  btns[0].className='tab-btn'+(name==='caso'?' active':'');
+  btns[1].className='tab-btn'+(name==='guia'?' active':'');
+  document.getElementById('pane-caso').style.display=name==='caso'?'block':'none';
+  document.getElementById('pane-guia').style.display=name==='guia'?'block':'none';
+}
+
+function showOverview(){
+  currentView='overview'; currentGroup=null; buildNav();
+  var cards='';
+  for(var i=0;i<GROUPS.length;i++){
+    var g=GROUPS[i];
+    cards+='<div class="group-card" onclick="showGroup('+g.id+')">'
+      +'<div class="group-card-top"><span class="nav-dot" style="background:'+COLORS[g.id-1]+'"></span>'
+      +'<span class="group-card-area">Grupo '+g.id+' · '+esc(g.area)+'</span></div>'
+      +'<div class="group-card-title">'+esc(g.tema)+'</div>'
+      +'<div class="group-card-design">'+esc(g.disenio.substring(0,62))+'…</div>'
+      +'</div>';
+  }
+  document.getElementById('main-content').innerHTML=
+    '<div class="page-title">Distribución de los 10 grupos</div>'
+    +'<div class="page-sub">Selecciona un grupo para ver el caso clínico completo y la guía de redacción.</div>'
+    +'<div class="metrics">'
+    +'<div class="metric-card"><div class="metric-val">60</div><div class="metric-lbl">alumnos</div></div>'
+    +'<div class="metric-card"><div class="metric-val">10</div><div class="metric-lbl">grupos</div></div>'
+    +'<div class="metric-card"><div class="metric-val">6</div><div class="metric-lbl">movimientos</div></div>'
+    +'<div class="metric-card"><div class="metric-val">20</div><div class="metric-lbl">puntos</div></div>'
+    +'</div>'
+    +'<div class="groups-grid">'+cards+'</div>';
+}
+
+function showPhases(){
+  currentView='phases'; currentGroup=null; buildNav();
+  var phases=[
+    {min:'5 min',n:'Lectura del caso',d:'Cada grupo lee su caso clínico, los resultados y los artículos sugeridos en silencio.'},
+    {min:'30 min',n:'Redacción en grupos',d:'Redactar la Discusión completa con los 6 movimientos. El docente circula entre los grupos para orientar.'},
+    {min:'5 min',n:'Revisión con checklist',d:'Cada grupo verifica internamente que su Discusión cubre los 6 movimientos antes de la puesta en común.'},
+    {min:'10 min',n:'Puesta en común',d:'2 grupos exponen su Discusión (5 min c/u). La clase retroalimenta guiada por la rúbrica.'}
+  ];
+  var pHtml='';
+  for(var i=0;i<phases.length;i++){
+    pHtml+='<div class="phase-item"><span class="phase-min">'+phases[i].min+'</span>'
+      +'<div><div class="phase-name">'+phases[i].n+'</div><div class="phase-desc">'+phases[i].d+'</div></div></div>';
+  }
+  var guide=['Seleccionar 2 grupos (al azar o voluntarios) para exponer su Discusión — 5 min cada uno.',
+    'Proyectar el caso del grupo que expone para que todos tengan el contexto.',
+    'La clase evalúa: ¿respondió el objetivo? ¿comparó con literatura? ¿declaró limitaciones?',
+    'Señalar 1 fortaleza y 1 oportunidad de mejora por grupo expuesto.',
+    'Cierre docente: reforzar la calibración del lenguaje según el diseño del estudio.'];
+  var gHtml='';
+  for(var i=0;i<guide.length;i++){
+    gHtml+='<div class="guide-item"><span class="list-dot" style="background:#2563eb;margin-top:5px"></span><span>'+esc(guide[i])+'</span></div>';
+  }
+  document.getElementById('main-content').innerHTML=
+    '<div class="page-title">Estructura de la actividad</div>'
+    +'<div class="page-sub">40 minutos en total.</div>'
+    +'<div class="card">'+pHtml+'</div>'
+    +'<div class="card"><div class="card-title">Guía para la puesta en común</div>'+gHtml+'</div>';
+}
+
+function showRubric(){
+  currentView='rubric'; currentGroup=null; buildNav();
+  var criteria=[
+    {c:'Responde directamente el objetivo en el primer párrafo',p:3},
+    {c:'Compara con al menos 2 estudios de la literatura sugerida con citas correctas',p:4},
+    {c:'Explica las diferencias con argumentos metodológicos, poblacionales o contextuales',p:3},
+    {c:'Menciona al menos 1 fortaleza metodológica del estudio',p:2},
+    {c:'Declara las 3 limitaciones con su efecto potencial y sugerencia futura',p:4},
+    {c:'Señala al menos 1 implicancia clínica o de salud pública concreta',p:2},
+    {c:'Lenguaje calibrado: no usa causalidad en diseño observacional; hedging adecuado',p:2}
+  ];
+  var cHtml='';
+  for(var i=0;i<criteria.length;i++){
+    cHtml+='<div class="rubric-item"><span class="rubric-check"></span>'
+      +'<span class="rubric-text">'+esc(criteria[i].c)+'</span>'
+      +'<span class="rubric-pts">'+criteria[i].p+' pt'+(criteria[i].p>1?'s':'')+'</span></div>';
+  }
+  var levels=[
+    {r:'18–20',l:'Excelente',d:'Todos los movimientos presentes, lenguaje apropiado, literatura bien argumentada.'},
+    {r:'14–17',l:'Bueno',d:'La mayoría de movimientos, alguna debilidad en comparación o limitaciones.'},
+    {r:'10–13',l:'En desarrollo',d:'Estructura incompleta, mezcla resultados con interpretación o no declara limitaciones.'},
+    {r:'< 10',l:'Insuficiente',d:'Repite resultados, no cita literatura, omite limitaciones e implicancias.'}
+  ];
+  var lHtml='';
+  for(var i=0;i<levels.length;i++){
+    lHtml+='<div class="level-item"><span class="level-range">'+esc(levels[i].r)+'</span>'
+      +'<span class="level-name">'+esc(levels[i].l)+'</span>'
+      +'<span class="level-desc">'+esc(levels[i].d)+'</span></div>';
+  }
+  document.getElementById('main-content').innerHTML=
+    '<div class="page-title">Rúbrica de evaluación</div>'
+    +'<div class="page-sub">20 puntos en total.</div>'
+    +'<div class="card"><div class="card-title">Criterios</div>'+cHtml+'<div class="rubric-total">Total: 20 pts</div></div>'
+    +'<div class="card"><div class="card-title">Niveles de desempeño</div>'+lHtml+'</div>';
+}
+
+buildNav();
+showOverview();
+</script>
+</body>
+</html>
